@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hi gagana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #cfe3ff;
+      --ink: #1d2a6b;
+      --sun: #ffc83d;
+      --plum: #7a3ff2;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--sky);
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", system-ui, sans-serif;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    main { text-align: left; position: relative; }
+    h1 {
+      font-weight: 800;
+      font-size: clamp(4.5rem, 22vw, 17rem);
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+    }
+    h1 span { display: block; }
+    h1 .name { color: var(--plum); }
+    p {
+      margin-top: 1.5rem;
+      font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+      font-weight: 500;
+    }
+    .sun {
+      position: absolute;
+      top: -1.5rem;
+      right: -1rem;
+      width: clamp(4rem, 12vw, 9rem);
+      aspect-ratio: 1;
+      background: var(--sun);
+      border-radius: 50%;
+      z-index: -1;
+    }
+    .wave {
+      display: inline-block;
+      transform-origin: 70% 80%;
+      animation: wave 1.6s ease-in-out 0.4s 2;
+      cursor: pointer;
+    }
+    .wave:focus-visible { outline: 3px solid var(--plum); outline-offset: 4px; border-radius: 6px; }
+    .wave.again { animation: wave 1.6s ease-in-out; }
+    @keyframes wave {
+      0%, 60%, 100% { transform: rotate(0); }
+      10%, 30% { transform: rotate(16deg); }
+      20%, 40% { transform: rotate(-10deg); }
+      50% { transform: rotate(8deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wave, .wave.again { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="sun" aria-hidden="true"></div>
+    <h1><span>hi</span><span class="name">gagana</span></h1>
+    <p>
+      <button class="wave" id="wave" aria-label="Wave again" style="all:unset;">👋</button>
+      Glad you stopped by.
+    </p>
+  </main>
+  <script>
+    const w = document.getElementById("wave");
+    w.tabIndex = 0;
+    w.addEventListener("click", () => {
+      w.classList.remove("again");
+      void w.offsetWidth;
+      w.classList.add("again");
+    });
+  </script>
+</body>
+</html>
